@@ -6,6 +6,8 @@ const build = () =>
   cp.spawn('node_modules/.bin/next', ['build'], { stdio: 'inherit' });
 const start = () =>
   cp.spawn('node_modules/.bin/next', ['start'], { stdio: 'inherit' });
+const dev = () =>
+  cp.spawn('node_modules/.bin/next', ['dev'], { stdio: 'inherit' });
 
 function runBuild() {
   buildProc = build();
@@ -28,6 +30,10 @@ function runNodemon() {
   });
 }
 
+function runDev() {
+  dev();
+}
+
 task('build', runBuild);
 task('start', ['build'], runStart);
-task('default', ['start'], runNodemon);
+task('default', runDev);
